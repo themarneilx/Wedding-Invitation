@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John & Jane | Wedding Invitation</title>
+    
+    <!-- Tailwind CSS (Styling Framework) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Animation Library (AOS) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'baby-blue': '#D1E9F6',
+                        'baby-blue-dark': '#8FB8D6',
+                        'dusty-blue': '#64748B',
+                        'navy-accent': '#1E293B',
+                        'wedding-gold': '#C5A059',
+                        'charcoal': '#334155',
+                        'soft-white': '#F8FAFC',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        script: ['"Great Vibes"', 'cursive'],
+                        sans: ['"Lato"', 'sans-serif'],
+                        header: ['"Cinzel"', 'serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8FB8D6;
+            border-radius: 4px;
+        }
+
+        /* Hero Overlay Gradient */
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(51, 65, 85, 0.3), rgba(209, 233, 246, 0.95));
+        }
+
+        /* Monogram Circle */
+        .monogram-border {
+            border: 1px solid rgba(255,255,255,0.6);
+            position: relative;
+        }
+        .monogram-border::after {
+            content: '';
+            position: absolute;
+            top: 5px; left: 5px; right: 5px; bottom: 5px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+        }
+
+        /* Smooth Anchor Scroll Offset */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Paint Stroke Shape */
+        .paint-stroke {
+            width: 180px;
+            height: 45px;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.2rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            position: relative;
+            margin: 10px auto; /* Increased spacing to prevent overlap */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="bg-soft-white text-charcoal font-sans overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" class="font-header text-xl tracking-widest text-charcoal">J <span class="text-baby-blue-dark">&</span> J</a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 font-serif text-sm tracking-widest uppercase">
+                <a href="#home" class="hover:text-baby-blue-dark transition">Home</a>
+                <a href="#details" class="hover:text-baby-blue-dark transition">Details</a>
+                <a href="#entourage" class="hover:text-baby-blue-dark transition">Entourage</a>
+                <a href="#guide" class="hover:text-baby-blue-dark transition">Dress Code</a>
+                <a href="#rsvp" class="px-5 py-2 bg-baby-blue-dark text-white rounded-full hover:bg-charcoal transition shadow-lg">RSVP</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-2xl text-charcoal p-2 focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full top-full left-0 shadow-lg">
+            <div class="flex flex-col p-6 space-y-4 text-center font-serif uppercase text-sm">
+                <a href="#home" class="mobile-link py-3 border-b border-gray-50 active:text-baby-blue-dark">Home</a>
+                <a href="#details" class="mobile-link py-3 border-b border-gray-50 active:text-baby-blue-dark">Details</a>
+                <a href="#entourage" class="mobile-link py-3 border-b border-gray-50 active:text-baby-blue-dark">Entourage</a>
+                <a href="#guide" class="mobile-link py-3 border-b border-gray-50 active:text-baby-blue-dark">Dress Code</a>
+                <a href="#rsvp" class="mobile-link py-3 text-baby-blue-dark font-bold bg-baby-blue/10 rounded-lg mt-2">RSVP</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header id="home" class="relative min-h-screen flex items-center justify-center bg-hero-pattern bg-cover bg-center bg-fixed pt-20 pb-20">
+        <div class="absolute inset-0 hero-overlay"></div>
+        
+        <div class="relative z-10 text-center px-4 w-full">
+            <!-- Floating Monogram -->
+            <div class="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 md:mb-8 rounded-full monogram-border flex items-center justify-center animate-float text-white" data-aos="zoom-in" data-aos-duration="1500">
+                <span class="font-script text-2xl md:text-3xl">J & J</span>
+            </div>
+
+            <h1 class="font-header text-4xl md:text-7xl lg:text-8xl text-charcoal mb-4 tracking-wide leading-tight" data-aos="fade-up" data-aos-delay="200">
+                JOHN <span class="font-script text-4xl md:text-7xl text-wedding-gold lowercase mx-1 md:mx-2 block md:inline my-2 md:my-0">and</span> JANE
+            </h1>
+            
+            <p class="text-charcoal/80 font-serif italic text-base md:text-xl mt-4 md:mt-6 tracking-widest uppercase border-t border-b border-charcoal/20 inline-block py-2 md:py-3 px-6 md:px-8" data-aos="fade-up" data-aos-delay="400">
+                Are getting married
+            </p>
+
+            <div class="mt-6 md:mt-8 text-charcoal font-header font-bold tracking-widest text-lg md:text-2xl" data-aos="fade-up" data-aos-delay="600">
+                DECEMBER 10, 2026
+            </div>
+        </div>
+
+        <!-- Scroll Indicator (Centered Fixed) -->
+        <div class="absolute bottom-8 left-0 w-full text-center animate-bounce text-charcoal/50 z-20 pointer-events-none">
+            <i class="fas fa-chevron-down text-2xl md:text-3xl"></i>
+        </div>
+    </header>
+
+    <!-- INTRO / QUOTE -->
+    <section class="py-16 md:py-20 bg-white">
+        <div class="container mx-auto px-6 text-center max-w-2xl">
+            <i class="fas fa-quote-left text-2xl md:text-3xl text-baby-blue-dark mb-6 opacity-50" data-aos="fade-in"></i>
+            <p class="font-serif text-lg md:text-2xl italic leading-relaxed text-gray-600 mb-6" data-aos="fade-up">
+                "We invite you to share in our joy as we stand together and exchange our vows, celebrating the beginning of our forever."
+            </p>
+            <div class="h-1 w-16 md:w-20 bg-baby-blue-dark mx-auto" data-aos="zoom-in"></div>
+        </div>
+    </section>
+
+    <!-- WEDDING DETAILS -->
+    <section id="details" class="py-16 md:py-24 bg-gradient-to-b from-white to-baby-blue/30 overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
+                <h2 class="font-header text-3xl md:text-4xl text-charcoal mb-3">Wedding Details</h2>
+                <p class="font-script text-2xl text-baby-blue-dark">Where & When</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center max-w-5xl mx-auto">
+                
+                <!-- Ceremony Card -->
+                <div class="relative group" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="absolute inset-0 bg-baby-blue-dark transform translate-x-3 translate-y-3 rounded-t-[200px] rounded-b-lg"></div>
+                    <div class="relative bg-white p-6 md:p-8 rounded-t-[200px] rounded-b-lg shadow-xl text-center border border-gray-100">
+                        <div class="h-56 md:h-64 w-full mb-6 overflow-hidden rounded-t-[160px]">
+                            <img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?q=80&w=2070&auto=format&fit=crop" alt="Church" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                        </div>
+                        <h3 class="font-header text-xl mb-2">The Ceremony</h3>
+                        <p class="text-wedding-gold font-bold mb-4">2:00 PM</p>
+                        <p class="font-serif text-gray-600">San Pedro Cathedral</p>
+                        <p class="text-sm text-gray-400 mt-2">San Pedro St, Davao City</p>
+                        <a href="https://maps.google.com" target="_blank" class="inline-block mt-4 text-xs tracking-widest uppercase border-b border-charcoal pb-1 hover:text-baby-blue-dark hover:border-baby-blue-dark transition">View Map</a>
+                    </div>
+                </div>
+
+                <!-- Reception Card -->
+                <div class="relative group mt-8 md:mt-0" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="absolute inset-0 bg-baby-blue transform -translate-x-3 translate-y-3 rounded-t-[200px] rounded-b-lg"></div>
+                    <div class="relative bg-white p-6 md:p-8 rounded-t-[200px] rounded-b-lg shadow-xl text-center border border-gray-100">
+                        <div class="h-56 md:h-64 w-full mb-6 overflow-hidden rounded-t-[160px]">
+                            <img src="https://images.unsplash.com/photo-1519225468359-2996515c9111?q=80&w=2069&auto=format&fit=crop" alt="Reception" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                        </div>
+                        <h3 class="font-header text-xl mb-2">The Reception</h3>
+                        <p class="text-wedding-gold font-bold mb-4">5:30 PM (To follow)</p>
+                        <p class="font-serif text-gray-600">Marco Polo Hotel</p>
+                        <p class="text-sm text-gray-400 mt-2">C.M. Recto Ave, Davao City</p>
+                        <a href="https://maps.google.com" target="_blank" class="inline-block mt-4 text-xs tracking-widest uppercase border-b border-charcoal pb-1 hover:text-baby-blue-dark hover:border-baby-blue-dark transition">View Map</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ENTOURAGE -->
+    <section id="entourage" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6 max-w-4xl text-center">
+            <h2 class="font-header text-3xl md:text-4xl mb-4" data-aos="fade-up">The Entourage</h2>
+            <div class="w-24 h-1 bg-baby-blue mx-auto mb-12 md:mb-16" data-aos="zoom-in"></div>
+
+            <div class="space-y-10 md:space-y-12">
+                
+                <!-- Parents -->
+                <div class="grid md:grid-cols-2 gap-8 md:gap-10">
+                    <div data-aos="fade-up">
+                        <h3 class="font-serif font-bold text-gray-400 text-xs md:text-sm tracking-widest uppercase mb-3">Parents of the Groom</h3>
+                        <p class="text-lg font-serif">Mr. Roberto Santos</p>
+                        <p class="text-lg font-serif">Mrs. Maria Santos</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="100">
+                        <h3 class="font-serif font-bold text-gray-400 text-xs md:text-sm tracking-widest uppercase mb-3">Parents of the Bride</h3>
+                        <p class="text-lg font-serif">Mr. Eduardo Reyes</p>
+                        <p class="text-lg font-serif">Mrs. Luzviminda Reyes</p>
+                    </div>
+                </div>
+
+                <!-- Sponsors -->
+                <div class="pt-6 md:pt-8" data-aos="fade-up">
+                    <h3 class="font-serif font-bold text-gray-400 text-xs md:text-sm tracking-widest uppercase mb-6">Principal Sponsors</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-y-4 text-gray-600 text-sm md:text-base">
+                        <p>Mr. Antonio Floirendo</p>
+                        <p>Mrs. Gina Lopez</p>
+                        <p>Mr. Carlos Tan</p>
+                        <p>Mrs. Elena Go</p>
+                        <p>Mr. Dennis Uy</p>
+                        <p>Mrs. Margarita Moran</p>
+                    </div>
+                </div>
+
+                <!-- Best Man & MOH -->
+                <div class="grid md:grid-cols-2 gap-6 md:gap-10 pt-6 md:pt-8">
+                    <div class="bg-baby-blue/10 py-6 md:py-8 rounded-lg" data-aos="zoom-in-right">
+                        <h3 class="font-serif font-bold text-baby-blue-dark text-xs md:text-sm tracking-widest uppercase mb-2">Best Man</h3>
+                        <p class="text-lg md:text-xl font-header">Michael Torres</p>
+                    </div>
+                    <div class="bg-baby-blue/10 py-6 md:py-8 rounded-lg" data-aos="zoom-in-left">
+                        <h3 class="font-serif font-bold text-baby-blue-dark text-xs md:text-sm tracking-widest uppercase mb-2">Maid of Honor</h3>
+                        <p class="text-lg md:text-xl font-header">Marvie Bosque</p>
+                    </div>
+                </div>
+
+                <!-- Secondary -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 text-sm">
+                    <div data-aos="fade-up" data-aos-delay="100">
+                        <h4 class="font-bold text-gray-400 uppercase mb-2">Veil</h4>
+                        <p>Jason Dy</p>
+                        <p>Sarah Geronimo</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <h4 class="font-bold text-gray-400 uppercase mb-2">Cord</h4>
+                        <p>Sam Milby</p>
+                        <p>Catriona Gray</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="300">
+                        <h4 class="font-bold text-gray-400 uppercase mb-2">Candle</h4>
+                        <p>Piolo Pascual</p>
+                        <p>Bea Alonzo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GUIDE / DRESS CODE SECTION REDESIGN -->
+    <section id="guide" class="py-20 bg-soft-white relative overflow-hidden">
+        <!-- Background Decor -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-baby-blue/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-baby-blue-dark/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            
+            <!-- Dress Code Title Block -->
+            <div data-aos="fade-down">
+                <h2 class="font-script text-6xl md:text-7xl text-charcoal mb-4">Dress Code</h2>
+                <h3 class="font-sans font-bold text-gray-500 uppercase tracking-widest text-sm md:text-base">Semi-Formal or Dressy Casual</h3>
+                <p class="font-serif italic text-gray-400 mt-2">Preferred clothes for Gentlemen & Ladies</p>
+            </div>
+
+            <!-- Palette Stack (Paint Strokes) -->
+            <div class="mt-12 mb-16 flex flex-col items-center justify-center relative" data-aos="zoom-in">
+                <!-- Swatch 1 -->
+                <div class="paint-stroke bg-baby-blue text-charcoal transform -rotate-2">
+                    Baby Blue
+                </div>
+                <!-- Swatch 2 -->
+                <div class="paint-stroke bg-baby-blue-dark transform rotate-1">
+                    Sky
+                </div>
+                <!-- Swatch 3 -->
+                <div class="paint-stroke bg-dusty-blue text-white transform -rotate-1">
+                    Dusty Blue
+                </div>
+                <!-- Swatch 4 -->
+                <div class="paint-stroke bg-navy-accent text-white transform rotate-2">
+                    Navy
+                </div>
+                <!-- Swatch 5 -->
+                <div class="paint-stroke bg-gray-300 text-charcoal transform -rotate-2">
+                    Silver
+                </div>
+            </div>
+
+            <!-- Visual Guide (Illustrations/Photos) -->
+            <div class="grid md:grid-cols-2 gap-12 items-center max-w-4xl mx-auto">
+                <!-- Gentlemen -->
+                <div class="text-center group" data-aos="fade-right">
+                     <div class="h-64 w-48 mx-auto bg-gray-100 rounded-t-full rounded-b-lg overflow-hidden border-4 border-white shadow-lg relative">
+                        <!-- Placeholder for Men's Illustration -->
+                        <img src="https://images.unsplash.com/photo-1592878950155-276e0176d6c6?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover opacity-90 group-hover:scale-110 transition duration-700" alt="Men's Attire">
+                        <div class="absolute inset-0 bg-navy-accent/10"></div>
+                     </div>
+                     <p class="font-header mt-6 text-xl text-charcoal">Gentlemen</p>
+                     <p class="text-sm text-gray-500 font-serif italic mt-2">Suit & Tie, Barong, or Dress Shirt with Slacks</p>
+                </div>
+
+                <!-- Ladies -->
+                <div class="text-center group" data-aos="fade-left">
+                    <div class="h-64 w-48 mx-auto bg-gray-100 rounded-t-full rounded-b-lg overflow-hidden border-4 border-white shadow-lg relative">
+                       <!-- Placeholder for Women's Illustration -->
+                       <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=2083&auto=format&fit=crop" class="w-full h-full object-cover opacity-90 group-hover:scale-110 transition duration-700" alt="Women's Attire">
+                       <div class="absolute inset-0 bg-baby-blue/10"></div>
+                    </div>
+                    <p class="font-header mt-6 text-xl text-charcoal">Ladies</p>
+                    <p class="text-sm text-gray-500 font-serif italic mt-2">Long Gown, Cocktail Dress, or Dressy Separates</p>
+               </div>
+            </div>
+
+            <!-- Secondary Info (Hashtag/Unplugged) -->
+            <div class="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-gray-200 pt-10">
+                <div data-aos="fade-up">
+                    <i class="fas fa-camera-slash text-2xl text-baby-blue-dark mb-2"></i>
+                    <h4 class="font-header text-lg">Unplugged Ceremony</h4>
+                    <p class="text-xs text-gray-500">Please enjoy the moment with us.</p>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-hashtag text-2xl text-baby-blue-dark mb-2"></i>
+                    <h4 class="font-header text-lg">Official Hashtag</h4>
+                    <p class="text-xs font-bold text-baby-blue-dark">#JohnAndJane2026</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- RSVP SECTION -->
+    <section id="rsvp" class="py-16 md:py-24 bg-baby-blue/20">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden" data-aos="zoom-in-up">
+                
+                <div class="bg-baby-blue-dark py-6 md:py-8 text-center text-white relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-full opacity-20 bg-[url('https://www.transparenttextures.com/patterns/diamond-upholstery.png')]"></div>
+                    <h2 class="font-header text-2xl md:text-3xl relative z-10">R.S.V.P</h2>
+                    <p class="font-serif italic text-xs md:text-sm mt-2 relative z-10">Kindly respond by November 15, 2026</p>
+                </div>
+
+                <div class="p-6 md:p-12">
+                    <form id="rsvp-form" onsubmit="handleRSVP(event)">
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-xs font-bold uppercase tracking-wide mb-2">Your Name(s)</label>
+                            <input type="text" class="w-full bg-gray-50 text-gray-700 border border-gray-200 rounded py-3 px-4 focus:outline-none focus:bg-white focus:border-baby-blue-dark transition" placeholder="John & Jane Doe" required>
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-gray-700 text-xs font-bold uppercase tracking-wide mb-2">Will you be attending?</label>
+                            <div class="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-6">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" name="attendance" value="yes" class="form-radio text-baby-blue-dark h-5 w-5" checked>
+                                    <span class="ml-2 text-gray-700">Joyfully Accepts</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" name="attendance" value="no" class="form-radio text-red-400 h-5 w-5">
+                                    <span class="ml-2 text-gray-700">Regretfully Declines</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="mb-8">
+                            <label class="block text-gray-700 text-xs font-bold uppercase tracking-wide mb-2">Number of Guests</label>
+                            <select class="w-full bg-gray-50 text-gray-700 border border-gray-200 rounded py-3 px-4 focus:outline-none focus:bg-white focus:border-baby-blue-dark">
+                                <option>1 Seat</option>
+                                <option>2 Seats</option>
+                                <option>3 Seats</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="w-full bg-charcoal text-white font-bold py-4 rounded hover:bg-baby-blue-dark transition duration-300 shadow-lg transform hover:-translate-y-1">
+                            CONFIRM ATTENDANCE
+                        </button>
+
+                        <div id="success-message" class="hidden mt-4 text-center text-green-600 font-serif italic">
+                            Thank you! Your response has been recorded.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-white py-12 border-t border-gray-100">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="font-header text-2xl text-charcoal mb-4">J & J</h2>
+            <p class="font-script text-2xl text-baby-blue-dark mb-6">See you at the altar!</p>
+            <p class="text-xs text-gray-400 uppercase tracking-widest">© 2026 John & Jane Wedding. All Rights Reserved.</p>
+        </div>
+    </footer> 
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Animations
+        AOS.init({
+            offset: 50, // Reduced offset for mobile
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+        });
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Form Handling
+        function handleRSVP(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const success = document.getElementById('success-message');
+            
+            // Simulate loading
+            const originalText = btn.innerText;
+            btn.innerText = 'SENDING...';
+            btn.disabled = true;
+            btn.classList.add('opacity-75');
+
+            setTimeout(() => {
+                btn.style.display = 'none';
+                success.classList.remove('hidden');
+                success.classList.add('block');
+                e.target.reset();
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
