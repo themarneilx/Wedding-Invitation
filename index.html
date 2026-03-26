@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>John & Jane | Wedding Invitation</title>
+    <title>John & Jane | A Wedding Celebration</title>
     
-    <!-- Tailwind CSS (Styling Framework) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Animation Library (AOS) -->
@@ -14,7 +14,8 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Cormorant Garamond for elegant serif, Montserrat for clean sans, Great Vibes for signature accents -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@200;300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
     
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -24,22 +25,21 @@
             theme: {
                 extend: {
                     colors: {
-                        'baby-blue': '#D1E9F6',
-                        'baby-blue-dark': '#8FB8D6',
-                        'dusty-blue': '#64748B',
-                        'navy-accent': '#1E293B',
-                        'wedding-gold': '#C5A059',
-                        'charcoal': '#334155',
-                        'soft-white': '#F8FAFC',
+                        'ivory': '#FCFAF8',
+                        'charcoal': '#1C1917',
+                        'sage': '#84907A',
+                        'sage-light': '#A1AB98',
+                        'stone-light': '#E5E5E5',
+                        'gold-accent': '#D4AF37'
                     },
                     fontFamily: {
-                        serif: ['"Playfair Display"', 'serif'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
                         script: ['"Great Vibes"', 'cursive'],
-                        sans: ['"Lato"', 'sans-serif'],
-                        header: ['"Cinzel"', 'serif'],
                     },
-                    backgroundImage: {
-                        'hero-pattern': "url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=2070&auto=format&fit=crop')",
+                    letterSpacing: {
+                        widest: '.2em',
+                        superwide: '.3em',
                     }
                 }
             }
@@ -47,425 +47,424 @@
     </script>
 
     <style>
-        /* Custom Scrollbar */
+        /* Minimalist Scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 4px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: #FCFAF8;
         }
         ::-webkit-scrollbar-thumb {
-            background: #8FB8D6;
-            border-radius: 4px;
+            background: #1C1917;
         }
 
-        /* Hero Overlay Gradient */
-        .hero-overlay {
-            background: linear-gradient(to bottom, rgba(51, 65, 85, 0.3), rgba(209, 233, 246, 0.95));
+        /* Subtle Reveal Animations */
+        .reveal-line {
+            width: 1px;
+            height: 0;
+            background-color: rgba(255,255,255,0.6);
+            animation: growLine 2s ease-in-out forwards;
+            animation-delay: 1.5s;
+            margin: 0 auto;
         }
 
-        /* Monogram Circle */
-        .monogram-border {
-            border: 1px solid rgba(255,255,255,0.6);
+        .reveal-line-dark {
+            width: 1px;
+            height: 0;
+            background-color: rgba(28,25,23,0.3);
+            animation: growLine 2s ease-in-out forwards;
+            margin: 0 auto;
+            transform-origin: top;
+        }
+
+        @keyframes growLine {
+            to { height: 80px; }
+        }
+
+        /* Image Parallax & Fades */
+        .bg-parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .image-overlay-dark {
+            background: linear-gradient(to bottom, rgba(28,25,23,0.4), rgba(28,25,23,0.7));
+        }
+
+        /* Bespoke Form Inputs */
+        .input-bespoke {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(28,25,23,0.2);
+            border-radius: 0;
+            padding: 10px 0;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: #1C1917;
+            transition: border-color 0.4s ease;
+        }
+        .input-bespoke:focus {
+            outline: none;
+            border-bottom: 1px solid #1C1917;
+            box-shadow: none;
+        }
+        .input-bespoke::placeholder {
+            color: rgba(28,25,23,0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.75rem;
+        }
+        
+        /* Custom Radio Buttons */
+        input[type="radio"] {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            border: 1px solid #1C1917;
+            border-radius: 50%;
+            outline: none;
             position: relative;
+            cursor: pointer;
         }
-        .monogram-border::after {
+        input[type="radio"]::before {
             content: '';
             position: absolute;
-            top: 5px; left: 5px; right: 5px; bottom: 5px;
-            border: 1px solid rgba(255,255,255,0.3);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
+            background: #1C1917;
+            transition: transform 0.2s ease;
+        }
+        input[type="radio"]:checked::before {
+            transform: translate(-50%, -50%) scale(1);
         }
 
-        /* Smooth Anchor Scroll Offset */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Floating Animation */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        .animate-float {
-            animation: float 4s ease-in-out infinite;
-        }
-
-        /* Paint Stroke Shape */
-        .paint-stroke {
-            width: 180px;
-            height: 45px;
-            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.2rem;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-            position: relative;
-            margin: 10px auto; /* Increased spacing to prevent overlap */
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        /* Organic Image Masking */
+        .arch-mask {
+            clip-path: ellipse(48% 65% at 50% 35%);
         }
     </style>
 </head>
-<body class="bg-soft-white text-charcoal font-sans overflow-x-hidden">
+<body class="bg-ivory text-charcoal font-sans antialiased selection:bg-sage selection:text-white overflow-x-hidden">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm py-4">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="font-header text-xl tracking-widest text-charcoal">J <span class="text-baby-blue-dark">&</span> J</a>
+    <!-- Navigation (Minimalist) -->
+    <nav class="fixed w-full z-50 transition-all duration-500 bg-transparent py-6" id="navbar">
+        <div class="container mx-auto px-6 lg:px-12 flex justify-between items-center text-white mix-blend-difference" id="nav-content">
+            <a href="#" class="font-serif text-2xl md:text-3xl italic tracking-wide">J & J</a>
             
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-8 font-serif text-sm tracking-widest uppercase">
-                <a href="#home" class="hover:text-baby-blue-dark transition">Home</a>
-                <a href="#details" class="hover:text-baby-blue-dark transition">Details</a>
-                <a href="#entourage" class="hover:text-baby-blue-dark transition">Entourage</a>
-                <a href="#guide" class="hover:text-baby-blue-dark transition">Dress Code</a>
-                <a href="#rsvp" class="px-5 py-2 bg-baby-blue-dark text-white rounded-full hover:bg-charcoal transition shadow-lg">RSVP</a>
+            <div class="hidden md:flex space-x-12 font-sans text-xs tracking-superwide uppercase">
+                <a href="#story" class="hover:text-gold-accent transition duration-300">Our Story</a>
+                <a href="#details" class="hover:text-gold-accent transition duration-300">The Details</a>
+                <a href="#entourage" class="hover:text-gold-accent transition duration-300">Entourage</a>
+                <a href="#rsvp" class="hover:text-gold-accent transition duration-300">RSVP</a>
             </div>
 
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-2xl text-charcoal p-2 focus:outline-none">
-                <i class="fas fa-bars"></i>
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="md:hidden text-white mix-blend-difference focus:outline-none">
+                <span class="block w-6 h-px bg-current mb-1.5 align-middle"></span>
+                <span class="block w-6 h-px bg-current align-middle"></span>
             </button>
         </div>
         
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full top-full left-0 shadow-lg">
-            <div class="flex flex-col p-6 space-y-4 text-center font-serif uppercase text-sm">
-                <a href="#home" class="mobile-link py-3 border-b border-gray-50 active:text-baby-blue-dark">Home</a>
-                <a href="#details" class="mobile-link py-3 border-b border-gray-50 active:text-baby-blue-dark">Details</a>
-                <a href="#entourage" class="mobile-link py-3 border-b border-gray-50 active:text-baby-blue-dark">Entourage</a>
-                <a href="#guide" class="mobile-link py-3 border-b border-gray-50 active:text-baby-blue-dark">Dress Code</a>
-                <a href="#rsvp" class="mobile-link py-3 text-baby-blue-dark font-bold bg-baby-blue/10 rounded-lg mt-2">RSVP</a>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-ivory z-40 flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500">
+            <div class="flex flex-col space-y-8 text-center font-sans uppercase tracking-widest text-sm text-charcoal">
+                <a href="#story" class="mobile-link hover:text-sage transition">Our Story</a>
+                <a href="#details" class="mobile-link hover:text-sage transition">The Details</a>
+                <a href="#entourage" class="mobile-link hover:text-sage transition">Entourage</a>
+                <a href="#rsvp" class="mobile-link hover:text-sage transition">RSVP</a>
             </div>
+            <button id="close-menu-btn" class="absolute top-8 right-8 text-charcoal text-2xl">&times;</button>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
-    <header id="home" class="relative min-h-screen flex items-center justify-center bg-hero-pattern bg-cover bg-center bg-fixed pt-20 pb-20">
-        <div class="absolute inset-0 hero-overlay"></div>
+    <header id="home" class="relative h-screen min-h-[600px] flex flex-col items-center justify-center bg-parallax bg-[url('https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=2070&auto=format&fit=crop')]">
+        <div class="absolute inset-0 image-overlay-dark"></div>
         
-        <div class="relative z-10 text-center px-4 w-full">
-            <!-- Floating Monogram -->
-            <div class="w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 md:mb-8 rounded-full monogram-border flex items-center justify-center animate-float text-white" data-aos="zoom-in" data-aos-duration="1500">
-                <span class="font-script text-2xl md:text-3xl">J & J</span>
-            </div>
-
-            <h1 class="font-header text-4xl md:text-7xl lg:text-8xl text-charcoal mb-4 tracking-wide leading-tight" data-aos="fade-up" data-aos-delay="200">
-                JOHN <span class="font-script text-4xl md:text-7xl text-wedding-gold lowercase mx-1 md:mx-2 block md:inline my-2 md:my-0">and</span> JANE
-            </h1>
+        <div class="relative z-10 text-center text-white px-4 w-full mt-20">
             
-            <p class="text-charcoal/80 font-serif italic text-base md:text-xl mt-4 md:mt-6 tracking-widest uppercase border-t border-b border-charcoal/20 inline-block py-2 md:py-3 px-6 md:px-8" data-aos="fade-up" data-aos-delay="400">
-                Are getting married
+            <p class="font-sans text-xs md:text-sm tracking-superwide uppercase mb-8 md:mb-12 opacity-80" data-aos="fade-down" data-aos-duration="2000">
+                You are invited
             </p>
 
-            <div class="mt-6 md:mt-8 text-charcoal font-header font-bold tracking-widest text-lg md:text-2xl" data-aos="fade-up" data-aos-delay="600">
-                DECEMBER 10, 2026
+            <h1 class="font-serif text-6xl md:text-8xl lg:text-9xl font-light tracking-wide leading-none mb-6">
+                <span class="block" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="300">John</span>
+                <span class="font-script text-4xl md:text-6xl lg:text-7xl text-gold-accent/80 -my-4 md:-my-8 block italic" data-aos="zoom-in" data-aos-duration="2000" data-aos-delay="600">and</span>
+                <span class="block" data-aos="fade-up" data-aos-duration="2000" data-aos-delay="900">Jane</span>
+            </h1>
+            
+            <div class="mt-12 md:mt-16 flex items-center justify-center space-x-6 font-sans text-[0.65rem] md:text-xs tracking-superwide uppercase opacity-90" data-aos="fade-in" data-aos-duration="2000" data-aos-delay="1200">
+                <span>December 10</span>
+                <span class="w-1 h-1 bg-gold-accent rounded-full"></span>
+                <span>2026</span>
+                <span class="w-1 h-1 bg-gold-accent rounded-full"></span>
+                <span>Davao City</span>
             </div>
         </div>
 
-        <!-- Scroll Indicator (Centered Fixed) -->
-        <div class="absolute bottom-8 left-0 w-full text-center animate-bounce text-charcoal/50 z-20 pointer-events-none">
-            <i class="fas fa-chevron-down text-2xl md:text-3xl"></i>
+        <!-- Scroll Reveal Line -->
+        <div class="absolute bottom-0 left-0 w-full flex justify-center z-20">
+            <div class="reveal-line"></div>
         </div>
     </header>
 
-    <!-- INTRO / QUOTE -->
-    <section class="py-16 md:py-20 bg-white">
-        <div class="container mx-auto px-6 text-center max-w-2xl">
-            <i class="fas fa-quote-left text-2xl md:text-3xl text-baby-blue-dark mb-6 opacity-50" data-aos="fade-in"></i>
-            <p class="font-serif text-lg md:text-2xl italic leading-relaxed text-gray-600 mb-6" data-aos="fade-up">
-                "We invite you to share in our joy as we stand together and exchange our vows, celebrating the beginning of our forever."
-            </p>
-            <div class="h-1 w-16 md:w-20 bg-baby-blue-dark mx-auto" data-aos="zoom-in"></div>
+    <!-- OUR STORY / INTRO -->
+    <section id="story" class="py-24 md:py-32 lg:py-48 px-6 bg-ivory">
+        <div class="container mx-auto max-w-5xl">
+            <div class="flex flex-col md:flex-row items-center gap-16 md:gap-24">
+                
+                <div class="w-full md:w-5/12 order-2 md:order-1" data-aos="fade-right" data-aos-duration="1500">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop" alt="The Couple" class="w-full h-auto grayscale-[20%] sepia-[10%] shadow-2xl arch-mask">
+                </div>
+
+                <div class="w-full md:w-7/12 order-1 md:order-2 text-center md:text-left">
+                    <h2 class="font-script text-5xl md:text-6xl text-sage mb-6" data-aos="fade-up">Two hearts,</h2>
+                    <p class="font-serif text-3xl md:text-4xl lg:text-5xl leading-tight text-charcoal mb-8" data-aos="fade-up" data-aos-delay="200">
+                        "We invite you to share in our joy as we stand together and exchange our vows, celebrating the beginning of our forever."
+                    </p>
+                    <div class="h-px w-24 bg-sage mx-auto md:mx-0" data-aos="fade-right" data-aos-delay="400"></div>
+                </div>
+
+            </div>
         </div>
     </section>
 
     <!-- WEDDING DETAILS -->
-    <section id="details" class="py-16 md:py-24 bg-gradient-to-b from-white to-baby-blue/30 overflow-hidden">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-12 md:mb-16" data-aos="fade-up">
-                <h2 class="font-header text-3xl md:text-4xl text-charcoal mb-3">Wedding Details</h2>
-                <p class="font-script text-2xl text-baby-blue-dark">Where & When</p>
+    <section id="details" class="py-24 md:py-32 bg-stone-light/30">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center mb-20 md:mb-32">
+                <span class="font-sans text-xs tracking-superwide uppercase text-sage-light block mb-4" data-aos="fade-down">When & Where</span>
+                <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-charcoal" data-aos="fade-up" data-aos-delay="200">The Details</h2>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center max-w-5xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 md:gap-24 relative">
+                <!-- Vertical Divider (Desktop) -->
+                <div class="hidden md:block absolute top-0 bottom-0 left-1/2 w-px bg-stone-light transform -translate-x-1/2"></div>
                 
-                <!-- Ceremony Card -->
-                <div class="relative group" data-aos="fade-right" data-aos-duration="1000">
-                    <div class="absolute inset-0 bg-baby-blue-dark transform translate-x-3 translate-y-3 rounded-t-[200px] rounded-b-lg"></div>
-                    <div class="relative bg-white p-6 md:p-8 rounded-t-[200px] rounded-b-lg shadow-xl text-center border border-gray-100">
-                        <div class="h-56 md:h-64 w-full mb-6 overflow-hidden rounded-t-[160px]">
-                            <img src="https://images.unsplash.com/photo-1544078751-58fee2d8a03b?q=80&w=2070&auto=format&fit=crop" alt="Church" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                <!-- Ceremony -->
+                <div class="text-center md:text-right pr-0 md:pr-12" data-aos="fade-up" data-aos-duration="1500">
+                    <div class="font-serif text-5xl md:text-6xl text-sage/40 mb-2 italic">01</div>
+                    <h3 class="font-serif text-2xl md:text-3xl mb-4">The Ceremony</h3>
+                    <p class="font-sans text-xs tracking-superwide uppercase text-charcoal mb-6">Two O'Clock in the afternoon</p>
+                    
+                    <div class="inline-block mt-4 border border-stone-light p-1">
+                        <div class="px-8 py-10 bg-ivory border border-stone-light flex flex-col items-center md:items-end w-full max-w-xs mx-auto md:mr-0">
+                            <p class="font-serif text-lg text-charcoal mb-2">San Pedro Cathedral</p>
+                            <p class="font-sans text-xs text-charcoal/60 leading-loose text-center md:text-right">San Pedro Street<br>Davao City, PH</p>
+                            <a href="#" class="mt-8 font-sans text-[0.65rem] tracking-superwide uppercase border-b border-charcoal/30 pb-1 hover:border-charcoal transition duration-300">View Map</a>
                         </div>
-                        <h3 class="font-header text-xl mb-2">The Ceremony</h3>
-                        <p class="text-wedding-gold font-bold mb-4">2:00 PM</p>
-                        <p class="font-serif text-gray-600">San Pedro Cathedral</p>
-                        <p class="text-sm text-gray-400 mt-2">San Pedro St, Davao City</p>
-                        <a href="https://maps.google.com" target="_blank" class="inline-block mt-4 text-xs tracking-widest uppercase border-b border-charcoal pb-1 hover:text-baby-blue-dark hover:border-baby-blue-dark transition">View Map</a>
                     </div>
                 </div>
 
-                <!-- Reception Card -->
-                <div class="relative group mt-8 md:mt-0" data-aos="fade-left" data-aos-duration="1000">
-                    <div class="absolute inset-0 bg-baby-blue transform -translate-x-3 translate-y-3 rounded-t-[200px] rounded-b-lg"></div>
-                    <div class="relative bg-white p-6 md:p-8 rounded-t-[200px] rounded-b-lg shadow-xl text-center border border-gray-100">
-                        <div class="h-56 md:h-64 w-full mb-6 overflow-hidden rounded-t-[160px]">
-                            <img src="https://images.unsplash.com/photo-1519225468359-2996515c9111?q=80&w=2069&auto=format&fit=crop" alt="Reception" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                <!-- Reception -->
+                <div class="text-center md:text-left pl-0 md:pl-12 mt-16 md:mt-0" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
+                    <div class="font-serif text-5xl md:text-6xl text-sage/40 mb-2 italic">02</div>
+                    <h3 class="font-serif text-2xl md:text-3xl mb-4">The Reception</h3>
+                    <p class="font-sans text-xs tracking-superwide uppercase text-charcoal mb-6">Five-Thirty in the evening</p>
+                    
+                    <div class="inline-block mt-4 border border-stone-light p-1">
+                        <div class="px-8 py-10 bg-ivory border border-stone-light flex flex-col items-center md:items-start w-full max-w-xs mx-auto md:ml-0">
+                            <p class="font-serif text-lg text-charcoal mb-2">Marco Polo Hotel</p>
+                            <p class="font-sans text-xs text-charcoal/60 leading-loose text-center md:text-left">C.M. Recto Ave<br>Davao City, PH</p>
+                            <a href="#" class="mt-8 font-sans text-[0.65rem] tracking-superwide uppercase border-b border-charcoal/30 pb-1 hover:border-charcoal transition duration-300">View Map</a>
                         </div>
-                        <h3 class="font-header text-xl mb-2">The Reception</h3>
-                        <p class="text-wedding-gold font-bold mb-4">5:30 PM (To follow)</p>
-                        <p class="font-serif text-gray-600">Marco Polo Hotel</p>
-                        <p class="text-sm text-gray-400 mt-2">C.M. Recto Ave, Davao City</p>
-                        <a href="https://maps.google.com" target="_blank" class="inline-block mt-4 text-xs tracking-widest uppercase border-b border-charcoal pb-1 hover:text-baby-blue-dark hover:border-baby-blue-dark transition">View Map</a>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
     <!-- ENTOURAGE -->
-    <section id="entourage" class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-6 max-w-4xl text-center">
-            <h2 class="font-header text-3xl md:text-4xl mb-4" data-aos="fade-up">The Entourage</h2>
-            <div class="w-24 h-1 bg-baby-blue mx-auto mb-12 md:mb-16" data-aos="zoom-in"></div>
+    <section id="entourage" class="py-24 md:py-32 px-6 bg-ivory text-center">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="font-serif text-4xl md:text-5xl text-charcoal mb-16 md:mb-24" data-aos="fade-up">The Entourage</h2>
 
-            <div class="space-y-10 md:space-y-12">
+            <!-- Editorial List Structure -->
+            <div class="space-y-20 md:space-y-24">
                 
                 <!-- Parents -->
-                <div class="grid md:grid-cols-2 gap-8 md:gap-10">
+                <div class="grid md:grid-cols-2 gap-12 border-b border-stone-light pb-20">
                     <div data-aos="fade-up">
-                        <h3 class="font-serif font-bold text-gray-400 text-xs md:text-sm tracking-widest uppercase mb-3">Parents of the Groom</h3>
-                        <p class="text-lg font-serif">Mr. Roberto Santos</p>
-                        <p class="text-lg font-serif">Mrs. Maria Santos</p>
+                        <h3 class="font-sans text-[0.65rem] tracking-superwide uppercase text-sage mb-6">Parents of the Groom</h3>
+                        <p class="font-serif text-xl text-charcoal mb-2">Mr. Roberto Santos</p>
+                        <p class="font-serif text-xl text-charcoal">Mrs. Maria Santos</p>
                     </div>
                     <div data-aos="fade-up" data-aos-delay="100">
-                        <h3 class="font-serif font-bold text-gray-400 text-xs md:text-sm tracking-widest uppercase mb-3">Parents of the Bride</h3>
-                        <p class="text-lg font-serif">Mr. Eduardo Reyes</p>
-                        <p class="text-lg font-serif">Mrs. Luzviminda Reyes</p>
+                        <h3 class="font-sans text-[0.65rem] tracking-superwide uppercase text-sage mb-6">Parents of the Bride</h3>
+                        <p class="font-serif text-xl text-charcoal mb-2">Mr. Eduardo Reyes</p>
+                        <p class="font-serif text-xl text-charcoal">Mrs. Luzviminda Reyes</p>
                     </div>
                 </div>
 
-                <!-- Sponsors -->
-                <div class="pt-6 md:pt-8" data-aos="fade-up">
-                    <h3 class="font-serif font-bold text-gray-400 text-xs md:text-sm tracking-widest uppercase mb-6">Principal Sponsors</h3>
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-y-4 text-gray-600 text-sm md:text-base">
-                        <p>Mr. Antonio Floirendo</p>
-                        <p>Mrs. Gina Lopez</p>
-                        <p>Mr. Carlos Tan</p>
-                        <p>Mrs. Elena Go</p>
-                        <p>Mr. Dennis Uy</p>
-                        <p>Mrs. Margarita Moran</p>
+                <!-- Best Man / MOH -->
+                <div class="grid md:grid-cols-2 gap-12 border-b border-stone-light pb-20">
+                    <div data-aos="fade-up">
+                        <h3 class="font-sans text-[0.65rem] tracking-superwide uppercase text-sage mb-6">Best Man</h3>
+                        <p class="font-serif text-2xl text-charcoal">Michael Torres</p>
                     </div>
-                </div>
-
-                <!-- Best Man & MOH -->
-                <div class="grid md:grid-cols-2 gap-6 md:gap-10 pt-6 md:pt-8">
-                    <div class="bg-baby-blue/10 py-6 md:py-8 rounded-lg" data-aos="zoom-in-right">
-                        <h3 class="font-serif font-bold text-baby-blue-dark text-xs md:text-sm tracking-widest uppercase mb-2">Best Man</h3>
-                        <p class="text-lg md:text-xl font-header">Michael Torres</p>
-                    </div>
-                    <div class="bg-baby-blue/10 py-6 md:py-8 rounded-lg" data-aos="zoom-in-left">
-                        <h3 class="font-serif font-bold text-baby-blue-dark text-xs md:text-sm tracking-widest uppercase mb-2">Maid of Honor</h3>
-                        <p class="text-lg md:text-xl font-header">Maria</p>
-                    </div>
-                </div>
-
-                <!-- Secondary -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 text-sm">
                     <div data-aos="fade-up" data-aos-delay="100">
-                        <h4 class="font-bold text-gray-400 uppercase mb-2">Veil</h4>
-                        <p>Jason Dy</p>
-                        <p>Sarah Geronimo</p>
-                    </div>
-                    <div data-aos="fade-up" data-aos-delay="200">
-                        <h4 class="font-bold text-gray-400 uppercase mb-2">Cord</h4>
-                        <p>Sam Milby</p>
-                        <p>Catriona Gray</p>
-                    </div>
-                    <div data-aos="fade-up" data-aos-delay="300">
-                        <h4 class="font-bold text-gray-400 uppercase mb-2">Candle</h4>
-                        <p>Piolo Pascual</p>
-                        <p>Bea Alonzo</p>
+                        <h3 class="font-sans text-[0.65rem] tracking-superwide uppercase text-sage mb-6">Maid of Honor</h3>
+                        <p class="font-serif text-2xl text-charcoal">Maria Reyes</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- GUIDE / DRESS CODE SECTION REDESIGN -->
-    <section id="guide" class="py-20 bg-soft-white relative overflow-hidden">
-        <!-- Background Decor -->
-        <div class="absolute top-0 right-0 w-64 h-64 bg-baby-blue/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-baby-blue-dark/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
-
-        <div class="container mx-auto px-6 relative z-10 text-center">
-            
-            <!-- Dress Code Title Block -->
-            <div data-aos="fade-down">
-                <h2 class="font-script text-6xl md:text-7xl text-charcoal mb-4">Dress Code</h2>
-                <h3 class="font-sans font-bold text-gray-500 uppercase tracking-widest text-sm md:text-base">Semi-Formal or Dressy Casual</h3>
-                <p class="font-serif italic text-gray-400 mt-2">Preferred clothes for Gentlemen & Ladies</p>
-            </div>
-
-            <!-- Palette Stack (Paint Strokes) -->
-            <div class="mt-12 mb-16 flex flex-col items-center justify-center relative" data-aos="zoom-in">
-                <!-- Swatch 1 -->
-                <div class="paint-stroke bg-baby-blue text-charcoal transform -rotate-2">
-                    Baby Blue
-                </div>
-                <!-- Swatch 2 -->
-                <div class="paint-stroke bg-baby-blue-dark transform rotate-1">
-                    Sky
-                </div>
-                <!-- Swatch 3 -->
-                <div class="paint-stroke bg-dusty-blue text-white transform -rotate-1">
-                    Dusty Blue
-                </div>
-                <!-- Swatch 4 -->
-                <div class="paint-stroke bg-navy-accent text-white transform rotate-2">
-                    Navy
-                </div>
-                <!-- Swatch 5 -->
-                <div class="paint-stroke bg-gray-300 text-charcoal transform -rotate-2">
-                    Silver
-                </div>
-            </div>
-
-            <!-- Visual Guide (Illustrations/Photos) -->
-            <div class="grid md:grid-cols-2 gap-12 items-center max-w-4xl mx-auto">
-                <!-- Gentlemen -->
-                <div class="text-center group" data-aos="fade-right">
-                     <div class="h-64 w-48 mx-auto bg-gray-100 rounded-t-full rounded-b-lg overflow-hidden border-4 border-white shadow-lg relative">
-                        <!-- Placeholder for Men's Illustration -->
-                        <img src="https://images.unsplash.com/photo-1592878950155-276e0176d6c6?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover opacity-90 group-hover:scale-110 transition duration-700" alt="Men's Attire">
-                        <div class="absolute inset-0 bg-navy-accent/10"></div>
-                     </div>
-                     <p class="font-header mt-6 text-xl text-charcoal">Gentlemen</p>
-                     <p class="text-sm text-gray-500 font-serif italic mt-2">Suit & Tie, Barong, or Dress Shirt with Slacks</p>
-                </div>
-
-                <!-- Ladies -->
-                <div class="text-center group" data-aos="fade-left">
-                    <div class="h-64 w-48 mx-auto bg-gray-100 rounded-t-full rounded-b-lg overflow-hidden border-4 border-white shadow-lg relative">
-                       <!-- Placeholder for Women's Illustration -->
-                       <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=2083&auto=format&fit=crop" class="w-full h-full object-cover opacity-90 group-hover:scale-110 transition duration-700" alt="Women's Attire">
-                       <div class="absolute inset-0 bg-baby-blue/10"></div>
-                    </div>
-                    <p class="font-header mt-6 text-xl text-charcoal">Ladies</p>
-                    <p class="text-sm text-gray-500 font-serif italic mt-2">Long Gown, Cocktail Dress, or Dressy Separates</p>
-               </div>
-            </div>
-
-            <!-- Secondary Info (Hashtag/Unplugged) -->
-            <div class="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-gray-200 pt-10">
+                <!-- Sponsors List -->
                 <div data-aos="fade-up">
-                    <i class="fas fa-camera-slash text-2xl text-baby-blue-dark mb-2"></i>
-                    <h4 class="font-header text-lg">Unplugged Ceremony</h4>
-                    <p class="text-xs text-gray-500">Please enjoy the moment with us.</p>
-                </div>
-                <div data-aos="fade-up" data-aos-delay="100">
-                    <i class="fas fa-hashtag text-2xl text-baby-blue-dark mb-2"></i>
-                    <h4 class="font-header text-lg">Official Hashtag</h4>
-                    <p class="text-xs font-bold text-baby-blue-dark">#JohnAndJane2026</p>
+                    <h3 class="font-sans text-[0.65rem] tracking-superwide uppercase text-sage mb-10">Principal Sponsors</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 font-serif text-lg text-charcoal max-w-xl mx-auto">
+                        <p>Mr. Antonio Floirendo & Mrs. Gina Lopez</p>
+                        <p>Mr. Carlos Tan & Mrs. Elena Go</p>
+                        <p>Mr. Dennis Uy & Mrs. Margarita Moran</p>
+                    </div>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- RSVP SECTION -->
-    <section id="rsvp" class="py-16 md:py-24 bg-baby-blue/20">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden" data-aos="zoom-in-up">
-                
-                <div class="bg-baby-blue-dark py-6 md:py-8 text-center text-white relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-full opacity-20 bg-[url('https://www.transparenttextures.com/patterns/diamond-upholstery.png')]"></div>
-                    <h2 class="font-header text-2xl md:text-3xl relative z-10">R.S.V.P</h2>
-                    <p class="font-serif italic text-xs md:text-sm mt-2 relative z-10">Kindly respond by November 15, 2026</p>
-                </div>
+    <!-- DRESS CODE / ATTIRE -->
+    <section id="attire" class="relative py-32 md:py-48 bg-parallax bg-[url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069&auto=format&fit=crop')] mt-12 mb-12">
+        <div class="absolute inset-0 bg-charcoal/80"></div>
+        <div class="container mx-auto px-6 relative z-10 text-center text-ivory">
+            <h2 class="font-script text-5xl md:text-6xl text-gold-accent mb-6" data-aos="fade-down">Attire</h2>
+            <h3 class="font-serif text-3xl md:text-4xl mb-4" data-aos="fade-up">Formal Elegance</h3>
+            
+            <p class="font-sans text-xs tracking-widest leading-loose max-w-lg mx-auto opacity-80 mt-8 mb-12" data-aos="fade-up" data-aos-delay="200">
+                We request the honor of your presence in formal attire. <br> Long gowns for the ladies and suits for the gentlemen.
+            </p>
 
-                <div class="p-6 md:p-12">
-                    <form id="rsvp-form" onsubmit="handleRSVP(event)">
-                        <div class="mb-6">
-                            <label class="block text-gray-700 text-xs font-bold uppercase tracking-wide mb-2">Your Name(s)</label>
-                            <input type="text" class="w-full bg-gray-50 text-gray-700 border border-gray-200 rounded py-3 px-4 focus:outline-none focus:bg-white focus:border-baby-blue-dark transition" placeholder="John & Jane Doe" required>
-                        </div>
-
-                        <div class="mb-6">
-                            <label class="block text-gray-700 text-xs font-bold uppercase tracking-wide mb-2">Will you be attending?</label>
-                            <div class="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-6">
-                                <label class="flex items-center cursor-pointer">
-                                    <input type="radio" name="attendance" value="yes" class="form-radio text-baby-blue-dark h-5 w-5" checked>
-                                    <span class="ml-2 text-gray-700">Joyfully Accepts</span>
-                                </label>
-                                <label class="flex items-center cursor-pointer">
-                                    <input type="radio" name="attendance" value="no" class="form-radio text-red-400 h-5 w-5">
-                                    <span class="ml-2 text-gray-700">Regretfully Declines</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="mb-8">
-                            <label class="block text-gray-700 text-xs font-bold uppercase tracking-wide mb-2">Number of Guests</label>
-                            <select class="w-full bg-gray-50 text-gray-700 border border-gray-200 rounded py-3 px-4 focus:outline-none focus:bg-white focus:border-baby-blue-dark">
-                                <option>1 Seat</option>
-                                <option>2 Seats</option>
-                                <option>3 Seats</option>
-                            </select>
-                        </div>
-
-                        <button type="submit" class="w-full bg-charcoal text-white font-bold py-4 rounded hover:bg-baby-blue-dark transition duration-300 shadow-lg transform hover:-translate-y-1">
-                            CONFIRM ATTENDANCE
-                        </button>
-
-                        <div id="success-message" class="hidden mt-4 text-center text-green-600 font-serif italic">
-                            Thank you! Your response has been recorded.
-                        </div>
-                    </form>
-                </div>
+            <!-- Minimalist Palette Representation -->
+            <div class="flex justify-center space-x-4 md:space-x-8 mt-12" data-aos="zoom-in" data-aos-delay="400">
+                <div class="w-12 h-16 bg-[#1A1A1A] border border-white/20"></div>
+                <div class="w-12 h-16 bg-[#F5F5F0]"></div>
+                <div class="w-12 h-16 bg-[#84907A]"></div>
+                <div class="w-12 h-16 bg-[#CFB53B]"></div>
             </div>
+            <p class="font-sans text-[0.6rem] tracking-superwide uppercase mt-8 opacity-60">A palette of Charcoal, Ivory, Sage, & Muted Gold</p>
+        </div>
+    </section>
+
+    <!-- RSVP -->
+    <section id="rsvp" class="py-24 md:py-32 px-6 bg-ivory">
+        <div class="container mx-auto max-w-2xl text-center">
+            
+            <div data-aos="fade-up">
+                <h2 class="font-serif text-4xl md:text-5xl text-charcoal mb-4">R. S. V. P.</h2>
+                <p class="font-serif italic text-charcoal/60 mb-16">Kindly respond by the fifteenth of November</p>
+            </div>
+
+            <form id="rsvp-form" onsubmit="handleRSVP(event)" class="text-left space-y-10" data-aos="fade-up" data-aos-delay="200">
+                
+                <div class="grid md:grid-cols-2 gap-10">
+                    <div>
+                        <input type="text" id="firstName" class="w-full input-bespoke" placeholder="First Name *" required>
+                    </div>
+                    <div>
+                        <input type="text" id="lastName" class="w-full input-bespoke" placeholder="Last Name *" required>
+                    </div>
+                </div>
+
+                <div>
+                    <input type="email" id="email" class="w-full input-bespoke" placeholder="Email Address *" required>
+                </div>
+
+                <div class="pt-4">
+                    <p class="font-sans text-[0.7rem] tracking-superwide uppercase text-charcoal/60 mb-6">Will you attend?</p>
+                    <div class="flex flex-col space-y-4">
+                        <label class="flex items-center group cursor-pointer">
+                            <input type="radio" name="attendance" value="accepts" required>
+                            <span class="ml-4 font-serif text-lg text-charcoal group-hover:text-sage transition">Joyfully Accepts</span>
+                        </label>
+                        <label class="flex items-center group cursor-pointer">
+                            <input type="radio" name="attendance" value="declines">
+                            <span class="ml-4 font-serif text-lg text-charcoal group-hover:text-sage transition">Regretfully Declines</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <input type="number" id="guests" class="w-full input-bespoke mt-4" placeholder="Number of Guests" min="1" max="5">
+                </div>
+
+                <div class="pt-8 text-center">
+                    <button type="submit" class="font-sans text-[0.75rem] tracking-superwide uppercase text-white bg-charcoal px-12 py-5 hover:bg-sage transition duration-500 w-full md:w-auto">
+                        Send Reply
+                    </button>
+                </div>
+
+                <div id="success-message" class="hidden mt-8 text-center text-sage font-serif italic text-xl">
+                    Thank you. We have received your reply.
+                </div>
+            </form>
+
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-white py-12 border-t border-gray-100">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="font-header text-2xl text-charcoal mb-4">J & J</h2>
-            <p class="font-script text-2xl text-baby-blue-dark mb-6">See you at the altar!</p>
-            <p class="text-xs text-gray-400 uppercase tracking-widest">© 2026 John & Jane Wedding. All Rights Reserved.</p>
+    <footer class="py-16 md:py-24 bg-charcoal text-white text-center">
+        <div class="container mx-auto px-6 flex flex-col items-center">
+            
+            <div class="reveal-line-dark !bg-white/20 mb-12"></div>
+            
+            <h2 class="font-serif text-3xl mb-8 tracking-widest">J & J</h2>
+            
+            <p class="font-sans text-[0.6rem] tracking-superwide uppercase text-white/40">
+                Created with love.<br>
+                © 2026 John & Jane
+            </p>
         </div>
-    </footer> 
+    </footer>
 
     <!-- SCRIPTS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize Animations
+        // Init AOS
         AOS.init({
-            offset: 50, // Reduced offset for mobile
-            duration: 800,
-            easing: 'ease-out-cubic',
             once: true,
+            offset: 100
         });
 
-        // Mobile Menu Toggle
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            const navContent = document.getElementById('nav-content');
+            
+            // if scrolled past 100px, make bg white and text dark
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-white', 'shadow-sm');
+                navContent.classList.remove('text-white', 'mix-blend-difference');
+                navContent.classList.add('text-charcoal');
+            } else {
+                nav.classList.remove('bg-white', 'shadow-sm');
+                navContent.classList.add('text-white', 'mix-blend-difference');
+                navContent.classList.remove('text-charcoal');
+            }
+        });
+
+        // Mobile Menu
         const btn = document.getElementById('mobile-menu-btn');
+        const closeBtn = document.getElementById('close-menu-btn');
         const menu = document.getElementById('mobile-menu');
         const links = document.querySelectorAll('.mobile-link');
 
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
+        function toggleMenu() {
+            if (menu.classList.contains('opacity-0')) {
+                menu.classList.remove('opacity-0', 'pointer-events-none');
+                menu.classList.add('opacity-100', 'pointer-events-auto');
+            } else {
+                menu.classList.add('opacity-0', 'pointer-events-none');
+                menu.classList.remove('opacity-100', 'pointer-events-auto');
+            }
+        }
 
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-            });
-        });
+        btn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+        links.forEach(link => link.addEventListener('click', toggleMenu));
 
         // Form Handling
         function handleRSVP(e) {
@@ -473,18 +472,15 @@
             const btn = e.target.querySelector('button');
             const success = document.getElementById('success-message');
             
-            // Simulate loading
-            const originalText = btn.innerText;
             btn.innerText = 'SENDING...';
             btn.disabled = true;
-            btn.classList.add('opacity-75');
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
 
             setTimeout(() => {
                 btn.style.display = 'none';
                 success.classList.remove('hidden');
-                success.classList.add('block');
                 e.target.reset();
-            }, 1500);
+            }, 1200);
         }
     </script>
 </body>
